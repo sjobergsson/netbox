@@ -10,6 +10,10 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <h3>{% block title %}{% if obj.pk %}Editing {{ obj_type }} {{ obj }}{% else %}Add a new {{ obj_type }}{% endif %}{% endblock %}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
                 {% block tabs %}{% endblock %}
                 {% if form.non_field_errors %}
                     <div class="panel panel-danger">
@@ -28,18 +32,18 @@
                     </div>
                 {% endblock %}
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3 text-right">
-                {% block buttons %}
-                    {% if obj.pk %}
-                        <button type="submit" name="_update" class="btn btn-primary">Update</button>
-                    {% else %}
-                        <button type="submit" name="_create" class="btn btn-primary">Create</button>
-                        <button type="submit" name="_addanother" class="btn btn-primary">Create and Add Another</button>
-                    {% endif %}
-                    <a href="{{ return_url }}" class="btn btn-default">Cancel</a>
-                {% endblock %}
+            <div class="col-md-3">
+                <div style="position: fixed">
+                    {% block buttons %}
+                        {% if obj.pk %}
+                            <p><button type="submit" name="_save" class="btn btn-success"><i class="fa fa-save"></i> Save</button></p>
+                        {% else %}
+                            <p><button type="submit" name="_create" class="btn btn-success"><i class="fa fa-plus"></i> Create</button></p>
+                            <p><button type="submit" name="_addanother" class="btn btn-primary"><i class="fa fa-plus"></i> Create and Add Another</button></p>
+                        {% endif %}
+                        <p><a href="{{ return_url }}" class="btn btn-default"><i class="fa fa-ban"></i> Cancel</a></p>
+                    {% endblock %}
+                </div>
             </div>
         </div>
     </form>
